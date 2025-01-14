@@ -214,6 +214,7 @@
         </div>
 
         <button type="button" onclick="addPropertyScore()">Add Property Score</button>
+        <button type="button" onclick="downloadExcel()">Download as Excel</button>
         <div class="error" id="errorMessage"></div>
     </form>
 
@@ -227,6 +228,17 @@
                     <th>Property Name</th>
                     <th>Address</th>
                     <th>Total Score</th>
+                    <th>Creditworthiness</th>
+                    <th>Demographics</th>
+                    <th>Traffic</th>
+                    <th>Sales Performance</th>
+                    <th>Placer.ai Scale</th>
+                    <th>Lease Duration</th>
+                    <th>Lease Structure</th>
+                    <th>Building Condition</th>
+                    <th>Site Characteristics</th>
+                    <th>Market Cap Rate</th>
+                    <th>Rent Growth</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -254,12 +266,14 @@
                 return;
             }
 
+            const scores = {};
             ids.forEach(id => {
                 const element = document.getElementById(id);
                 const value = parseInt(element.value, 10);
                 if (isNaN(value)) {
                     allSelected = false;
                 } else {
+                    scores[id] = value;
                     totalScore += value;
                 }
             });
@@ -285,6 +299,12 @@
             scoreCell.textContent = totalScore;
             row.appendChild(scoreCell);
 
+            ids.forEach(id => {
+                const cell = document.createElement('td');
+                cell.textContent = scores[id];
+                row.appendChild(cell);
+            });
+
             const actionCell = document.createElement('td');
             const deleteButton = document.createElement('button');
             deleteButton.textContent = "Delete";
@@ -297,6 +317,24 @@
             tableBody.appendChild(row);
 
             document.getElementById('totalScore').textContent = `Total Score: ${totalScore}`;
+        }
+
+        function downloadExcel() {
+            const table = document.getElementById('propertyTable');
+            let csvContent = "data:text/csv;charset=utf-8,";
+
+            for (let row of table.rows) {
+                const cells = Array.from(row.cells).map(cell => cell.textContent);
+                csvContent += cells.join(",") + "\n";
+            }
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', 'tracked_properties.csv');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
     </script>
 </body>
