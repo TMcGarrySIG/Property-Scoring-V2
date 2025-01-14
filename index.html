@@ -1,0 +1,290 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="en">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>Property Scoring Tool</title>\
+    <style>\
+        body \{\
+            font-family: Arial, sans-serif;\
+            margin: 20px;\
+            padding: 20px;\
+        \}\
+        h1 \{\
+            text-align: center;\
+        \}\
+        form \{\
+            max-width: 600px;\
+            margin: 0 auto;\
+        \}\
+        .section \{\
+            margin-bottom: 20px;\
+        \}\
+        label \{\
+            display: block;\
+            margin-bottom: 5px;\
+            font-weight: bold;\
+        \}\
+        select, input \{\
+            width: 100%;\
+            padding: 8px;\
+            margin-bottom: 10px;\
+            border: 1px solid #ccc;\
+            border-radius: 4px;\
+        \}\
+        .total-score \{\
+            text-align: center;\
+            font-size: 1.5em;\
+            margin-top: 20px;\
+        \}\
+        button \{\
+            background-color: #4CAF50;\
+            color: white;\
+            padding: 10px 20px;\
+            border: none;\
+            border-radius: 4px;\
+            cursor: pointer;\
+        \}\
+        button:hover \{\
+            background-color: #45a049;\
+        \}\
+        .error \{\
+            color: red;\
+            font-size: 0.9em;\
+        \}\
+        .tracker \{\
+            margin-top: 30px;\
+        \}\
+        .tracker table \{\
+            width: 100%;\
+            border-collapse: collapse;\
+        \}\
+        .tracker th, .tracker td \{\
+            border: 1px solid #ddd;\
+            padding: 8px;\
+            text-align: left;\
+        \}\
+        .tracker th \{\
+            background-color: #f2f2f2;\
+            font-weight: bold;\
+        \}\
+    </style>\
+</head>\
+<body>\
+    <h1>Property Scoring Tool</h1>\
+    <form id="scoringForm">\
+        <div class="section">\
+            <label for="propertyName">Property Name</label>\
+            <input type="text" id="propertyName" placeholder="Enter property name">\
+        </div>\
+\
+        <div class="section">\
+            <label for="propertyAddress">Property Address</label>\
+            <input type="text" id="propertyAddress" placeholder="Enter property address">\
+        </div>\
+\
+        <div class="section">\
+            <label for="creditworthiness">Creditworthiness of Tenant</label>\
+            <select id="creditworthiness">\
+                <option value="" disabled selected>Select an option</option>\
+                <option value="25">AAA</option>\
+                <option value="20">AA</option>\
+                <option value="15">A</option>\
+                <option value="10">BBB</option>\
+                <option value="5">Below BBB/Private</option>\
+            </select>\
+        </div>\
+\
+        <div class="section">\
+            <label for="locationDemographics">Location - Demographics and Population Growth</label>\
+            <select id="locationDemographics">\
+                <option value="" disabled selected>Select an option</option>\
+                <option value="10">High growth and affluent area</option>\
+                <option value="7">Stable growth area</option>\
+                <option value="5">Moderate growth area</option>\
+                <option value="3">Low growth area</option>\
+            </select>\
+        </div>\
+\
+        <div class="section">\
+            <label for="locationTraffic">Location - Traffic and Visibility</label>\
+            <select id="locationTraffic">\
+                <option value="" disabled selected>Select an option</option>\
+                <option value="10">High traffic count and prime visibility</option>\
+                <option value="7">Moderate traffic and good visibility</option>\
+                <option value="5">Low traffic and limited visibility</option>\
+                <option value="3">Poor traffic and visibility</option>\
+            </select>\
+        </div>\
+\
+        <div class="section">\
+            <label for="tenantSales">Tenant Sales Performance</label>\
+            <select id="tenantSales">\
+                <option value="" disabled selected>Select an option</option>\
+                <option value="15">High sales (top 25% of industry)</option>\
+                <option value="10">Above-average sales (50-75% of industry)</option>\
+                <option value="5">Average sales (25-50% of industry)</option>\
+                <option value="3">Below-average sales (bottom 25% of industry)</option>\
+            </select>\
+        </div>\
+\
+        <div class="section">\
+            <label for="placerScale">Placer.ai Scale</label>\
+            <select id="placerScale">\
+                <option value="" disabled selected>Select an option</option>\
+                <option value="10">Excellent (top 25%)</option>\
+                <option value="7">Good (50-75%)</option>\
+                <option value="5">Average (25-50%)</option>\
+                <option value="3">Poor (bottom 25%)</option>\
+            </select>\
+        </div>\
+\
+        <div class="section">\
+            <label for="leaseDuration">Lease Terms - Lease Duration</label>\
+            <select id="leaseDuration">\
+                <option value="" disabled selected>Select an option</option>\
+                <option value="5">15+ years remaining</option>\
+                <option value="4">10-15 years remaining</option>\
+                <option value="3">5-10 years remaining</option>\
+                <option value="2">Less than 5 years remaining</option>\
+            </select>\
+        </div>\
+\
+        <div class="section">\
+            <label for="leaseStructure">Lease Terms - Lease Structure</label>\
+            <select id="leaseStructure">\
+                <option value="" disabled selected>Select an option</option>\
+                <option value="5">Triple Net (NNN)</option>\
+                <option value="3">Double Net (NN)</option>\
+                <option value="2">Gross Lease</option>\
+            </select>\
+        </div>\
+\
+        <div class="section">\
+            <label for="buildingCondition">Building and Site Quality - Building Condition</label>\
+            <select id="buildingCondition">\
+                <option value="" disabled selected>Select an option</option>\
+                <option value="5">New or recently renovated</option>\
+                <option value="4">Good condition</option>\
+                <option value="3">Fair condition</option>\
+                <option value="2">Poor condition</option>\
+            </select>\
+        </div>\
+\
+        <div class="section">\
+            <label for="siteCharacteristics">Building and Site Quality - Site Characteristics</label>\
+            <select id="siteCharacteristics">\
+                <option value="" disabled selected>Select an option</option>\
+                <option value="5">Prime corner lot</option>\
+                <option value="4">High-visibility mid-block</option>\
+                <option value="3">Secondary location</option>\
+                <option value="2">Tertiary location</option>\
+            </select>\
+        </div>\
+\
+        <div class="section">\
+            <label for="marketCapRate">Market Cap Rate</label>\
+            <select id="marketCapRate">\
+                <option value="" disabled selected>Select an option</option>\
+                <option value="5">Below market average</option>\
+                <option value="3">At market average</option>\
+                <option value="1">Above market average</option>\
+            </select>\
+        </div>\
+\
+        <div class="section">\
+            <label for="rentGrowth">Rent Growth Potential</label>\
+            <select id="rentGrowth">\
+                <option value="" disabled selected>Select an option</option>\
+                <option value="5">High growth market</option>\
+                <option value="3">Moderate growth market</option>\
+                <option value="2">Low growth market</option>\
+            </select>\
+        </div>\
+\
+        <button type="button" onclick="addPropertyScore()">Add Property Score</button>\
+        <div class="error" id="errorMessage"></div>\
+    </form>\
+\
+    <div class="total-score" id="totalScore">Total Score: 0</div>\
+\
+    <div class="tracker">\
+        <h2>Tracked Properties</h2>\
+        <table id="propertyTable">\
+            <thead>\
+                <tr>\
+                    <th>Property Name</th>\
+                    <th>Address</th>\
+                    <th>Total Score</th>\
+                </tr>\
+            </thead>\
+            <tbody>\
+            </tbody>\
+        </table>\
+    </div>\
+\
+    <script>\
+        function addPropertyScore() \{\
+            const ids = [\
+                'creditworthiness', 'locationDemographics', 'locationTraffic',\
+                'tenantSales', 'placerScale', 'leaseDuration',\
+                'leaseStructure', 'buildingCondition', 'siteCharacteristics',\
+                'marketCapRate', 'rentGrowth'\
+            ];\
+\
+            const propertyName = document.getElementById('propertyName').value;\
+            const propertyAddress = document.getElementById('propertyAddress').value;\
+            let totalScore = 0;\
+            let allSelected = true;\
+\
+            if (!propertyName || !propertyAddress) \{\
+                document.getElementById('errorMessage').textContent = "Please enter both property name and address.";\
+                return;\
+            \}\
+\
+            ids.forEach(id => \{\
+                const element = document.getElementById(id);\
+                const value = parseInt(element.value, 10);\
+                if (isNaN(value)) \{\
+                    allSelected = false;\
+                \} else \{\
+                    totalScore += value;\
+                \}\
+            \});\
+\
+            if (!allSelected) \{\
+                document.getElementById('errorMessage').textContent = "Please select an option for all fields.";\
+                return;\
+            \}\
+\
+            document.getElementById('errorMessage').textContent = "";\
+            const tableBody = document.getElementById('propertyTable').querySelector('tbody');\
+            const row = document.createElement('tr');\
+\
+            const nameCell = document.createElement('td');\
+            nameCell.textContent = propertyName;\
+            row.appendChild(nameCell);\
+\
+            const addressCell = document.createElement('td');\
+            addressCell.textContent = propertyAddress;\
+            row.appendChild(addressCell);\
+\
+            const scoreCell = document.createElement('td');\
+            scoreCell.textContent = totalScore;\
+            row.appendChild(scoreCell);\
+\
+            tableBody.appendChild(row);\
+\
+            document.getElementById('totalScore').textContent = `Total Score: $\{totalScore\}`;\
+        \}\
+    </script>\
+</body>\
+</html>\
+}
