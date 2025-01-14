@@ -68,6 +68,17 @@
             background-color: #f2f2f2;
             font-weight: bold;
         }
+        .tracker button {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .tracker button:hover {
+            background-color: #ff1a1a;
+        }
     </style>
 </head>
 <body>
@@ -84,7 +95,7 @@
         </div>
 
         <div class="section">
-            <label for="creditworthiness">Creditworthiness of Tenant</label>
+            <label for="creditworthiness">Creditworthiness of Tenant (Max: 25)</label>
             <select id="creditworthiness">
                 <option value="" disabled selected>Select an option</option>
                 <option value="25">AAA</option>
@@ -96,7 +107,7 @@
         </div>
 
         <div class="section">
-            <label for="locationDemographics">Location - Demographics and Population Growth</label>
+            <label for="locationDemographics">Location - Demographics and Population Growth (Max: 10)</label>
             <select id="locationDemographics">
                 <option value="" disabled selected>Select an option</option>
                 <option value="10">High growth and affluent area</option>
@@ -107,7 +118,7 @@
         </div>
 
         <div class="section">
-            <label for="locationTraffic">Location - Traffic and Visibility</label>
+            <label for="locationTraffic">Location - Traffic and Visibility (Max: 10)</label>
             <select id="locationTraffic">
                 <option value="" disabled selected>Select an option</option>
                 <option value="10">High traffic count and prime visibility</option>
@@ -118,7 +129,7 @@
         </div>
 
         <div class="section">
-            <label for="tenantSales">Tenant Sales Performance</label>
+            <label for="tenantSales">Tenant Sales Performance (Max: 15)</label>
             <select id="tenantSales">
                 <option value="" disabled selected>Select an option</option>
                 <option value="15">High sales (top 25% of industry)</option>
@@ -129,7 +140,7 @@
         </div>
 
         <div class="section">
-            <label for="placerScale">Placer.ai Scale</label>
+            <label for="placerScale">Placer.ai Scale (Max: 10)</label>
             <select id="placerScale">
                 <option value="" disabled selected>Select an option</option>
                 <option value="10">Excellent (top 25%)</option>
@@ -140,7 +151,7 @@
         </div>
 
         <div class="section">
-            <label for="leaseDuration">Lease Terms - Lease Duration</label>
+            <label for="leaseDuration">Lease Terms - Lease Duration (Max: 5)</label>
             <select id="leaseDuration">
                 <option value="" disabled selected>Select an option</option>
                 <option value="5">15+ years remaining</option>
@@ -151,7 +162,7 @@
         </div>
 
         <div class="section">
-            <label for="leaseStructure">Lease Terms - Lease Structure</label>
+            <label for="leaseStructure">Lease Terms - Lease Structure (Max: 5)</label>
             <select id="leaseStructure">
                 <option value="" disabled selected>Select an option</option>
                 <option value="5">Triple Net (NNN)</option>
@@ -161,7 +172,7 @@
         </div>
 
         <div class="section">
-            <label for="buildingCondition">Building and Site Quality - Building Condition</label>
+            <label for="buildingCondition">Building and Site Quality - Building Condition (Max: 5)</label>
             <select id="buildingCondition">
                 <option value="" disabled selected>Select an option</option>
                 <option value="5">New or recently renovated</option>
@@ -172,7 +183,7 @@
         </div>
 
         <div class="section">
-            <label for="siteCharacteristics">Building and Site Quality - Site Characteristics</label>
+            <label for="siteCharacteristics">Building and Site Quality - Site Characteristics (Max: 5)</label>
             <select id="siteCharacteristics">
                 <option value="" disabled selected>Select an option</option>
                 <option value="5">Prime corner lot</option>
@@ -183,7 +194,7 @@
         </div>
 
         <div class="section">
-            <label for="marketCapRate">Market Cap Rate</label>
+            <label for="marketCapRate">Market Cap Rate (Max: 5)</label>
             <select id="marketCapRate">
                 <option value="" disabled selected>Select an option</option>
                 <option value="5">Below market average</option>
@@ -193,7 +204,7 @@
         </div>
 
         <div class="section">
-            <label for="rentGrowth">Rent Growth Potential</label>
+            <label for="rentGrowth">Rent Growth Potential (Max: 5)</label>
             <select id="rentGrowth">
                 <option value="" disabled selected>Select an option</option>
                 <option value="5">High growth market</option>
@@ -216,6 +227,7 @@
                     <th>Property Name</th>
                     <th>Address</th>
                     <th>Total Score</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -272,6 +284,15 @@
             const scoreCell = document.createElement('td');
             scoreCell.textContent = totalScore;
             row.appendChild(scoreCell);
+
+            const actionCell = document.createElement('td');
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = "Delete";
+            deleteButton.onclick = () => {
+                row.remove();
+            };
+            actionCell.appendChild(deleteButton);
+            row.appendChild(actionCell);
 
             tableBody.appendChild(row);
 
